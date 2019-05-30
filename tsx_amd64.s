@@ -1,0 +1,288 @@
+#include "textflag.h"
+
+// func XBEGIN() uint32
+TEXT ·XBEGIN(SB), NOSPLIT, $0-4
+    MOVL $0xFFFFFFFF, ret+0(FP)
+    XBEGIN aborted
+    RET
+
+aborted:
+    MOVL AX, ret+0(FP)
+    RET
+
+// func XEND()
+TEXT ·XEND(SB), NOSPLIT, $0
+    XEND
+    RET
+
+// func XTEST() bool
+TEXT ·XTEST(SB), NOSPLIT, $0-1
+    XTEST
+    SETNE ret+0(FP)
+    RET
+
+// func XABORT(reason uint8)
+TEXT ·XABORT(SB), NOSPLIT, $0-1
+    MOVBLZX reason+0(FP), AX
+    // each XABORT <imm8> is 3 bytes long; we don't need to do bounds
+    // check because reason can only be [0, 255] and we have all the
+    // XABORT cases
+    LEAL (AX)(AX*2), AX
+    JMP AX
+    XABORT $0
+    XABORT $1
+    XABORT $2
+    XABORT $3
+    XABORT $4
+    XABORT $5
+    XABORT $6
+    XABORT $7
+    XABORT $8
+    XABORT $9
+    XABORT $10
+    XABORT $11
+    XABORT $12
+    XABORT $13
+    XABORT $14
+    XABORT $15
+    XABORT $16
+    XABORT $17
+    XABORT $18
+    XABORT $19
+    XABORT $20
+    XABORT $21
+    XABORT $22
+    XABORT $23
+    XABORT $24
+    XABORT $25
+    XABORT $26
+    XABORT $27
+    XABORT $28
+    XABORT $29
+    XABORT $30
+    XABORT $31
+    XABORT $32
+    XABORT $33
+    XABORT $34
+    XABORT $35
+    XABORT $36
+    XABORT $37
+    XABORT $38
+    XABORT $39
+    XABORT $40
+    XABORT $41
+    XABORT $42
+    XABORT $43
+    XABORT $44
+    XABORT $45
+    XABORT $46
+    XABORT $47
+    XABORT $48
+    XABORT $49
+    XABORT $50
+    XABORT $51
+    XABORT $52
+    XABORT $53
+    XABORT $54
+    XABORT $55
+    XABORT $56
+    XABORT $57
+    XABORT $58
+    XABORT $59
+    XABORT $60
+    XABORT $61
+    XABORT $62
+    XABORT $63
+    XABORT $64
+    XABORT $65
+    XABORT $66
+    XABORT $67
+    XABORT $68
+    XABORT $69
+    XABORT $70
+    XABORT $71
+    XABORT $72
+    XABORT $73
+    XABORT $74
+    XABORT $75
+    XABORT $76
+    XABORT $77
+    XABORT $78
+    XABORT $79
+    XABORT $80
+    XABORT $81
+    XABORT $82
+    XABORT $83
+    XABORT $84
+    XABORT $85
+    XABORT $86
+    XABORT $87
+    XABORT $88
+    XABORT $89
+    XABORT $90
+    XABORT $91
+    XABORT $92
+    XABORT $93
+    XABORT $94
+    XABORT $95
+    XABORT $96
+    XABORT $97
+    XABORT $98
+    XABORT $99
+    XABORT $100
+    XABORT $101
+    XABORT $102
+    XABORT $103
+    XABORT $104
+    XABORT $105
+    XABORT $106
+    XABORT $107
+    XABORT $108
+    XABORT $109
+    XABORT $110
+    XABORT $111
+    XABORT $112
+    XABORT $113
+    XABORT $114
+    XABORT $115
+    XABORT $116
+    XABORT $117
+    XABORT $118
+    XABORT $119
+    XABORT $120
+    XABORT $121
+    XABORT $122
+    XABORT $123
+    XABORT $124
+    XABORT $125
+    XABORT $126
+    XABORT $127
+    XABORT $128
+    XABORT $129
+    XABORT $130
+    XABORT $131
+    XABORT $132
+    XABORT $133
+    XABORT $134
+    XABORT $135
+    XABORT $136
+    XABORT $137
+    XABORT $138
+    XABORT $139
+    XABORT $140
+    XABORT $141
+    XABORT $142
+    XABORT $143
+    XABORT $144
+    XABORT $145
+    XABORT $146
+    XABORT $147
+    XABORT $148
+    XABORT $149
+    XABORT $150
+    XABORT $151
+    XABORT $152
+    XABORT $153
+    XABORT $154
+    XABORT $155
+    XABORT $156
+    XABORT $157
+    XABORT $158
+    XABORT $159
+    XABORT $160
+    XABORT $161
+    XABORT $162
+    XABORT $163
+    XABORT $164
+    XABORT $165
+    XABORT $166
+    XABORT $167
+    XABORT $168
+    XABORT $169
+    XABORT $170
+    XABORT $171
+    XABORT $172
+    XABORT $173
+    XABORT $174
+    XABORT $175
+    XABORT $176
+    XABORT $177
+    XABORT $178
+    XABORT $179
+    XABORT $180
+    XABORT $181
+    XABORT $182
+    XABORT $183
+    XABORT $184
+    XABORT $185
+    XABORT $186
+    XABORT $187
+    XABORT $188
+    XABORT $189
+    XABORT $190
+    XABORT $191
+    XABORT $192
+    XABORT $193
+    XABORT $194
+    XABORT $195
+    XABORT $196
+    XABORT $197
+    XABORT $198
+    XABORT $199
+    XABORT $200
+    XABORT $201
+    XABORT $202
+    XABORT $203
+    XABORT $204
+    XABORT $205
+    XABORT $206
+    XABORT $207
+    XABORT $208
+    XABORT $209
+    XABORT $210
+    XABORT $211
+    XABORT $212
+    XABORT $213
+    XABORT $214
+    XABORT $215
+    XABORT $216
+    XABORT $217
+    XABORT $218
+    XABORT $219
+    XABORT $220
+    XABORT $221
+    XABORT $222
+    XABORT $223
+    XABORT $224
+    XABORT $225
+    XABORT $226
+    XABORT $227
+    XABORT $228
+    XABORT $229
+    XABORT $230
+    XABORT $231
+    XABORT $232
+    XABORT $233
+    XABORT $234
+    XABORT $235
+    XABORT $236
+    XABORT $237
+    XABORT $238
+    XABORT $239
+    XABORT $240
+    XABORT $241
+    XABORT $242
+    XABORT $243
+    XABORT $244
+    XABORT $245
+    XABORT $246
+    XABORT $247
+    XABORT $248
+    XABORT $249
+    XABORT $250
+    XABORT $251
+    XABORT $252
+    XABORT $253
+    XABORT $254
+    XABORT $255
+    RET
